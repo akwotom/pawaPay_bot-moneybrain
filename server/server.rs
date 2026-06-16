@@ -68,7 +68,7 @@ pub async fn start_server() {
                 crate::server::error::panic_handler_middleware,
             ));
 
-    let listener = tokio::net::TcpListener::bind(format!("127.0.0.1:{}", port))
+    let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{}", port))
         .await
         .unwrap();
 
