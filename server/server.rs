@@ -11,7 +11,10 @@ use std::{env, str::FromStr};
 use crate::server::routers::webhook::*;
 
 pub async fn start_server() {
-    let port = env::var("HTTP_PORT").unwrap();
+    let port = match env::var("HTTP_PORT") {
+        Result::Ok(v) => v,
+        Result::Err(_) => env::var("PORT").unwrap(),
+    };
 
     let router: Router = axum::Router::new();
 
