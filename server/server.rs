@@ -16,6 +16,8 @@ pub async fn start_server() {
         Result::Err(_) => env::var("PORT").unwrap(),
     };
 
+    println!("Will be binding to port {port}\n");
+
     let router: Router = axum::Router::new();
 
     let router =
