@@ -208,7 +208,7 @@ pub async fn parse_webhook(json: serde_json::Value) {
                             [
                                 {
                                     "text": "Make Payment",
-                                    "url": format!("t.me/{bot_name}/webui/fund?amount.value={amount_value}&amount.currency_code={amount_currency_code}&inline_message_id={inline_message_id}", ),   
+                                    "url": format!("t.me/{bot_name}/webui/fund?startapp=amount.value={amount_value}&amount.currency_code={amount_currency_code}&inline_message_id={inline_message_id}", ),   
                                 }
                             ]
                         ]
