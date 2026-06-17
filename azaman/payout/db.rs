@@ -58,6 +58,9 @@ pub async fn find_by_service_id(id: &String) -> Option<Transaction> {
         .find_one(mongodb::bson::doc! {
             "service_callback.id": id,
         })
+        .sort(mongodb::bson::doc! {
+            "_id": -1,
+        })
         .await
         .unwrap()
 }
