@@ -119,7 +119,25 @@ pub async fn parse_webhook(json: serde_json::Value) {
                 value, currency_code
             );
 
-            let user_name = "some user name";
+            let user_name = match inline_query_data.get("from") {
+                Option::None => {
+                    invalid_data!();
+                    return;
+                }
+                Option::Some(v) => match v.get("first_name") {
+                    Option::None => {
+                        invalid_data!();
+                        return;
+                    }
+                    Option::Some(v) => match v.as_str() {
+                        Option::None => {
+                            invalid_data!();
+                            return;
+                        }
+                        Option::Some(v) => v.to_string(),
+                    },
+                },
+            };
 
             // This inline query response just gives the client the starting message which he can send to his correspondent
             let response = api::send_request(
