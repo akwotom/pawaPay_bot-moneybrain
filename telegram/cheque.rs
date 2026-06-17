@@ -16,6 +16,7 @@ impl Cheque {
     pub fn on_status_change(&self) {
         // If liquidated, let's update the original message
         let inline_message_id = (&self.telegram).inline_message_id.clone();
+        let cheque_id = (&self).id.clone();
 
         let liquidated = self.liquidated;
         let funded = self.funded;
@@ -49,7 +50,8 @@ impl Cheque {
                 if funded {
                     // Update the message to give the user the possibility of liquidating.
                     let bot_name = unsafe { TG_STATE.bot_name };
-                    let url = format!("t.me/{}/webui?", bot_name);
+
+                    let url = format!("t.me/{bot_name}/webui/fund?startapp={cheque_id}",);
 
                     match telegram::api::send_request(
                         "/editMessageReplyMarkup",
