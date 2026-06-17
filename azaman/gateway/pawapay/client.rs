@@ -23,6 +23,8 @@ pub(crate) async fn make_request(
 
     let api_url = std::env::var("PAWAPAY_API_URL").unwrap();
 
+    let api_url = regex::Regex::new(r"(?i)/+$").unwrap().replace(api_url.as_str(), "");
+
     let inner_path = &format!("/{path}");
 
     let inner_path = std::path::Path::new(inner_path);
