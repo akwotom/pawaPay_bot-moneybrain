@@ -24,9 +24,7 @@ pub async fn collect_money(transaction: &mut Transaction) -> Result<(), String> 
 
     let now_string = chrono::Utc::now().to_rfc3339();
 
-    transaction.provider_data = Option::Some(serde_json::json!({
-        "last_refresh_time": now_string,
-    }));
+    transaction.last_refresh_time = Option::Some(now_string);
 
     db::update(transaction).await;
 

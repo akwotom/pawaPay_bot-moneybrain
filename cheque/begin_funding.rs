@@ -19,7 +19,7 @@ pub(crate) async fn begin_funding(cheque: &mut Cheque, payment_method: &PaymentM
 
     azaman::fund::collect_money(&mut Transaction {
         amount: amount.clone(),
-        id: id.clone(),
+        id: "".to_string(),
         service_callback: CallbackServiceInfo {
             id: id.to_string(),
             name: "cheque".to_string(),

@@ -61,7 +61,7 @@ async fn liquidate_cheque(cheque: &mut Cheque, payment_method: azaman::PaymentMe
 
     azaman::payout::exec_payout(&mut azaman::Transaction {
         amount: cheque.amount.clone(),
-        id: id.clone(),
+        id: "".to_string(),
         service_callback: azaman::CallbackServiceInfo {
             id: cheque.id.to_string(),
             name: "cheque".to_string(),
