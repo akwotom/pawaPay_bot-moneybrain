@@ -62,7 +62,7 @@ impl Cheque {
                                     "inline_keyboard": [
                                         [
                                             {
-                                                "text": "Collect Funds",
+                                                "text": "Withdraw",
                                                 "url": url,
                                             }
                                         ]
