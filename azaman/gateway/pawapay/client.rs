@@ -21,7 +21,7 @@ pub(crate) async fn make_request(
     //
     let api_token = std::env::var("PAWAPAY_API_KEY").unwrap();
 
-    let api_url = "https://api.sandbox.pawapay.io/v2";
+    let api_url = std::env::var("PAWAPAY_API_URL").unwrap();
 
     let inner_path = &format!("/{path}");
 
