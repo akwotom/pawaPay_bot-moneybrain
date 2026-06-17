@@ -186,16 +186,19 @@ pub async fn parse_webhook(json: serde_json::Value) {
 
         println!("The full value is {value}\n");
 
-        let amount =
-            match parse_query_txt(get_string_field!("query", value).to_string()) {
-                Option::None => return,
-                Option::Some(v) => v,
-            };
+        let amount = match parse_query_txt(get_string_field!("query", value).to_string()) {
+            Option::None => return,
+            Option::Some(v) => v,
+        };
 
         let amount_value = amount.value;
         let amount_currency_code = &(&amount).currency_code;
 
         println!("The amount parsed is \n{amount:?}\n");
+
+        let btn_url = format!(
+            "t.me/{bot_name}/webui/fund?startapp={amount_value}_{amount_currency_code}_{inline_message_id}",
+        );
 
         // Now, just edit the message, update the payment button.
         api::send_request(
@@ -208,7 +211,7 @@ pub async fn parse_webhook(json: serde_json::Value) {
                             [
                                 {
                                     "text": "Make Payment",
-                                    "url": format!("t.me/{bot_name}/webui/fund?startapp=amount.value={amount_value}&amount.currency_code={amount_currency_code}&inline_message_id={inline_message_id}", ),   
+                                    "url": btn_url,
                                 }
                             ]
                         ]
