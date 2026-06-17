@@ -215,7 +215,7 @@ pub async fn parse_webhook(json: serde_json::Value) {
         println!("The amount parsed is \n{amount:?}\n");
 
         let btn_url = format!(
-            "t.me/{bot_name}/webui/fund?startapp={amount_value}_{amount_currency_code}_{inline_message_id}",
+            "t.me/{bot_name}/webui/fund?startapp={amount_value}___{amount_currency_code}___{inline_message_id}",
         );
 
         // Now, just edit the message, update the payment button.
